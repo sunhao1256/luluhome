@@ -1,0 +1,10 @@
+/* Hide scrollbar on all browser engines */
+html, body {
+    overflow: hidden !important;
+    height: 100%;
+}
+
+/* For Webkit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+    display: none;
+}

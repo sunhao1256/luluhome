@@ -1,0 +1,16 @@
+<div class="social-icons">
+    {{ range .Site.Params.social }}
+        <a href="{{ .url }}" {{ .html_attributes | safeHTMLAttr }} style="margin: 0 1rem; display: inline-flex; align-items: center; text-decoration: none;">
+          {{ if eq .icon_pack "fa" }}
+            <i class="{{ .icon_pack}} fa-{{ .icon}}" style="margin-right: 0.5rem;"></i>
+          {{ else if eq .icon_pack "fab" }}
+            <i class="fab fa-{{ .icon}}" style="margin-right: 0.5rem;"></i>
+          {{ else if eq .icon_pack "fas" }}
+            <i class="fas fa-{{ .icon}}" style="margin-right: 0.5rem;"></i>
+          {{ else if eq .icon_pack "ai" }}
+            <i class="ai ai-{{ .icon}} ai-1.9x" style="margin-right: 0.5rem;"></i>
+          {{ end }}
+          {{ with .label }}<span class="social-label">{{ . }}</span>{{ end }}
+        </a>
+    {{ end }}
+</div>

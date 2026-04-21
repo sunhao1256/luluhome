@@ -1,0 +1,34 @@
+baseURL = 'https://luluhome.site/'
+languageCode = 'zh-cn'
+title = 'LuluHome'
+theme = 'introduction'
+
+[params]
+    favicon                      = "img/favicon.svg"           # Path to favicon file
+    themeStyle                   = "auto"                  # Choose "light" or "dark" or "auto"
+    showMenu                     = false                   # Show navigation menu
+    fadeIn                       = true                    # Turn on/off the fade-in effect
+    customCSS                    = ["custom.css"]          # Include custom css files placed under assets/
+
+    [params.home]
+        introHeight              = "fullheight"            # Input either "medium" or "large" or "fullheight"
+        showLatest               = false                   # Show latest blog post summary
+        localTime                = false                   # Show your current local time in contact section
+        timeZone                 = "Asia/Shanghai"         # Your timezone
+        timeFormat               = "zh-CN"                 # Language specific format to use
+
+    [[params.social]]
+        url   = "https://blog.luluhome.site"
+        icon  = "link"
+        label = "Frank Blog"
+        icon_pack = "fas"
+
+    [[params.social]]
+        url   = "https://wblog.luluhome.site"
+        icon  = "link"
+        label = "Wang Blog"
+        icon_pack = "fas"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true # Required for some theme features
