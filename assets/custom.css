@@ -237,10 +237,21 @@ body {
 }
 
 @media screen and (max-width: 768px) {
+    /* Gallery pages sit inside two theme sections. Remove the inner horizontal
+       padding so viewport-based children do not overflow on narrow screens. */
+    #top.section {
+        padding: 1.5rem 1rem 2rem;
+    }
+
+    #top.section > .section {
+        padding: 1.25rem 0 0;
+    }
+
     .photo-gallery,
     .home-gallery {
         column-count: 2;
-        margin-top: 1.5rem;
+        column-gap: 0.5rem;
+        margin-top: 1.25rem;
     }
 
     .home-gallery {
@@ -248,7 +259,8 @@ body {
     }
 
     .gallery-page.container {
-        width: calc(100vw - 2rem);
+        width: 100%;
+        max-width: 100%;
     }
 
     .albums-nav {
@@ -256,17 +268,60 @@ body {
         margin-top: 1.25rem;
     }
 
+    .gallery-page > .albums-nav {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: 100%;
+        gap: 0.4rem;
+        margin-top: 0;
+    }
+
     .albums-nav__link {
         padding: 0.55rem 0.8rem;
     }
 
+    .gallery-page > .albums-nav .albums-nav__link {
+        justify-content: center;
+        gap: 0.35rem;
+        min-width: 0;
+        padding: 0.5rem 0.35rem;
+        font-size: 0.86rem;
+    }
+
+    .gallery-page > .albums-nav .albums-nav__number {
+        display: none;
+    }
+
+    .gallery-page > .albums-nav .albums-nav__count {
+        min-width: 1.45rem;
+        height: 1.25rem;
+        padding: 0 0.3rem;
+        font-size: 0.67rem;
+    }
+
+    .photo-gallery__item {
+        margin-bottom: 0.5rem;
+        border-radius: 0.6rem;
+    }
+
     .gallery-page__heading {
-        align-items: flex-start;
+        align-items: center;
+        gap: 0.85rem;
+    }
+
+    .gallery-page__heading .bold-title {
+        font-size: clamp(2.6rem, 13vw, 3.5rem);
+        line-height: 1.05;
     }
 
     .gallery-page__back {
         width: 2.5rem;
         height: 2.5rem;
-        margin-top: 0.25rem;
+        margin-top: 0;
+    }
+
+    .gallery-page__description {
+        margin-top: 0.55rem;
+        font-size: 0.95rem;
     }
 }
