@@ -1,0 +1,20 @@
+{{ $current := .current | default "" }}
+<nav class="albums-nav" aria-label="相册分类">
+  {{ range slice
+    (dict "number" "01" "slug" "duoduo" "label" "DuoDuo")
+    (dict "number" "02" "slug" "lulu" "label" "Lulu")
+    (dict "number" "03" "slug" "travel" "label" "Travel")
+  }}
+    {{ $albumPage := site.GetPage .slug }}
+    {{ $count := len ($albumPage.Resources.Match "images/*") }}
+    <a
+      class="albums-nav__link{{ if eq $current .slug }} is-active{{ end }}"
+      href="{{ printf "/%s/" .slug | relURL }}"
+      {{ if eq $current .slug }}aria-current="page"{{ end }}
+    >
+      <span class="albums-nav__number">{{ .number }}</span>
+      <span>{{ .label }}</span>
+      <span class="albums-nav__count" aria-label="{{ $count }} 张图片">{{ $count }}</span>
+    </a>
+  {{ end }}
+</nav>

@@ -1,0 +1,25 @@
+{{ $image := .image }}
+{{ $thumbnail := $image }}
+{{ if gt $image.Width 360 }}
+  {{ $thumbnail = $image.Resize "360x jpg q68" }}
+{{ end }}
+<a
+  class="photo-gallery__item"
+  href="{{ $image.RelPermalink }}"
+  data-pswp-width="{{ $image.Width }}"
+  data-pswp-height="{{ $image.Height }}"
+  {{ with .album }}data-album="{{ . }}"{{ end }}
+  target="_blank"
+  aria-label="查看大图"
+>
+  <img
+    class="photo-gallery__image"
+    src="{{ $thumbnail.RelPermalink }}"
+    width="{{ $thumbnail.Width }}"
+    height="{{ $thumbnail.Height }}"
+    alt=""
+    loading="{{ if .eager }}eager{{ else }}lazy{{ end }}"
+    {{ if .eager }}fetchpriority="high"{{ end }}
+    decoding="async"
+  >
+</a>

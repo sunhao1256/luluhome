@@ -1,5 +1,6 @@
-<div class="social-icons">
-    {{ range .Site.Params.social }}
+{{ with .Site.Params.social }}
+  <div class="social-icons">
+    {{ range . }}
         <a href="{{ .url }}" {{ .html_attributes | safeHTMLAttr }} style="margin: 0 1rem; display: inline-flex; align-items: center; text-decoration: none;">
           {{ if eq .icon_pack "fa" }}
             <i class="{{ .icon_pack}} fa-{{ .icon}}" style="margin-right: 0.5rem;"></i>
@@ -13,4 +14,9 @@
           {{ with .label }}<span class="social-label">{{ . }}</span>{{ end }}
         </a>
     {{ end }}
-</div>
+  </div>
+{{ end }}
+
+{{ if eq .File.TranslationBaseName "index" }}
+  {{ partial "home/gallery.html" . }}
+{{ end }}

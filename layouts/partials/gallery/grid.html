@@ -1,0 +1,14 @@
+{{ $images := .images }}
+{{ $id := .id }}
+{{ $class := .class | default "photo-gallery" }}
+{{ if $images }}
+  <div id="{{ $id }}" class="photo-gallery {{ $class }}" data-pswp-gallery aria-label="图片相册">
+    {{ range $index, $image := $images }}
+      {{ partial "gallery/item.html" (dict "image" $image "eager" (eq $index 0)) }}
+    {{ end }}
+  </div>
+
+  {{ $options := dict "targetPath" "js/photoswipe-gallery.js" "format" "esm" "minify" (not hugo.IsServer) }}
+  {{ $script := resources.Get "js/photoswipe-gallery.js" | js.Build $options | fingerprint }}
+  <script type="module" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}

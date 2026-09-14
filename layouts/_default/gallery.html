@@ -1,0 +1,21 @@
+{{ define "title" }}
+  <div class="gallery-page__heading">
+    <a class="gallery-page__back" href="{{ "/" | relURL }}" aria-label="返回首页">←</a>
+    <div>
+      <h1 class="bold-title is-1">{{ .Title }}</h1>
+      {{ with .Description }}<p class="gallery-page__description">{{ . }}</p>{{ end }}
+    </div>
+  </div>
+{{ end }}
+
+{{ define "main" }}
+  <main class="container gallery-page">
+    {{ partial "home/albums-nav.html" (dict "current" .Section) }}
+    {{ $images := sort (.Resources.Match "images/*") "Name" }}
+    {{ partial "gallery/grid.html" (dict "images" $images "id" (printf "%s-gallery" .Section) "class" "album-gallery") }}
+  </main>
+{{ end }}
+
+{{ define "footer" }}
+  {{ partial "footer/text.html" . }}
+{{ end }}

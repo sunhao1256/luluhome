@@ -1,4 +1,4 @@
-baseURL = 'https://luluhome.site/'
+baseURL = 'https://blog-bn0.pages.dev/'
 languageCode = 'zh-cn'
 title = 'LuluHome'
 theme = 'introduction'
@@ -8,7 +8,8 @@ theme = 'introduction'
     themeStyle                   = "auto"                  # Choose "light" or "dark" or "auto"
     showMenu                     = false                   # Show navigation menu
     fadeIn                       = true                    # Turn on/off the fade-in effect
-    customCSS                    = ["custom.css"]          # Include custom css files placed under assets/
+    customCSS                    = ["vendor/photoswipe/photoswipe.css", "custom.css"] # Include custom css files placed under assets/
+    customJS                     = ["js/site.js"]          # Include custom JavaScript files placed under assets/
 
     [params.home]
         introHeight              = "fullheight"            # Input either "medium" or "large" or "fullheight"
@@ -16,18 +17,6 @@ theme = 'introduction'
         localTime                = false                   # Show your current local time in contact section
         timeZone                 = "Asia/Shanghai"         # Your timezone
         timeFormat               = "zh-CN"                 # Language specific format to use
-
-    [[params.social]]
-        url   = "https://blog.luluhome.site"
-        icon  = "link"
-        label = "Frank Blog"
-        icon_pack = "fas"
-
-    [[params.social]]
-        url   = "https://wblog.luluhome.site"
-        icon  = "link"
-        label = "Wang Blog"
-        icon_pack = "fas"
 
 [markup]
   [markup.goldmark.renderer]

@@ -4,8 +4,14 @@
   <url>
     <loc>http://localhost:1313/categories/</loc>
   </url><url>
+    <loc>http://localhost:1313/duoduo/</loc>
+  </url><url>
+    <loc>http://localhost:1313/lulu/</loc>
+  </url><url>
     <loc>http://localhost:1313/</loc>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1313/travel/</loc>
   </url>
 </urlset>

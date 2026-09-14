@@ -1,0 +1,23 @@
+{{ partial "home/albums-nav.html" (dict "current" "") }}
+<div
+  id="home-gallery"
+  class="photo-gallery home-gallery"
+  data-pswp-gallery
+  data-random-gallery
+  data-picks-per-album="3"
+  aria-label="首页随机相册"
+></div>
+
+<template data-gallery-source="home-gallery">
+  {{ range $album := slice "duoduo" "lulu" "travel" }}
+    {{ with site.GetPage $album }}
+      {{ range sort (.Resources.Match "images/*") "Name" }}
+        {{ partial "gallery/item.html" (dict "image" . "album" $album "eager" false) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</template>
+
+{{ $options := dict "targetPath" "js/photoswipe-gallery.js" "format" "esm" "minify" (not hugo.IsServer) }}
+{{ $script := resources.Get "js/photoswipe-gallery.js" | js.Build $options | fingerprint }}
+<script type="module" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous"></script>

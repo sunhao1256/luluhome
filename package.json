@@ -5,5 +5,8 @@
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0"
+  },
+  "dependencies": {
+    "photoswipe": "^5.4.4"
   }
 }

@@ -1,10 +1,272 @@
-/* Hide scrollbar on all browser engines */
-html, body {
-    overflow: hidden !important;
-    height: 100%;
+/* The theme hero starts at one viewport high, but the gallery must be free to
+   extend the document and create a normal page scroll. */
+html,
+body {
+    height: auto !important;
+    min-height: 100%;
+    overflow-x: hidden !important;
 }
 
-/* For Webkit (Chrome, Safari, etc.) */
-::-webkit-scrollbar {
-    display: none;
+html {
+    overflow-y: scroll !important;
+}
+
+body {
+    overflow-y: visible !important;
+}
+
+#top.hero.is-fullheight {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+}
+
+/* Keep the theme's entrance effect without delaying useful content. */
+.fade-in {
+    animation-duration: 0.35s !important;
+}
+
+.fade-in.one {
+    animation-delay: 0.05s !important;
+}
+
+.fade-in.two {
+    animation-delay: 0.12s !important;
+}
+
+.fade-in.three {
+    animation-delay: 0.2s !important;
+}
+
+.albums-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    width: min(48rem, calc(100vw - 2rem));
+    margin: 1.75rem auto 0;
+}
+
+.albums-nav__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid rgba(127, 127, 127, 0.28);
+    border-radius: 999px;
+    color: inherit;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.albums-nav__link:hover,
+.albums-nav__link:focus-visible,
+.albums-nav__link.is-active {
+    color: inherit;
+    border-color: currentColor;
+    background: rgba(127, 127, 127, 0.1);
+    transform: translateY(-1px);
+}
+
+.albums-nav__number {
+    opacity: 0.55;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+}
+
+.albums-nav__count {
+    display: inline-grid;
+    min-width: 1.65rem;
+    height: 1.35rem;
+    margin-left: 0.15rem;
+    padding: 0 0.4rem;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(127, 127, 127, 0.14);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+}
+
+.photo-gallery {
+    column-count: 4;
+    column-gap: 0.75rem;
+    width: 100%;
+    margin: 2rem auto 5rem;
+}
+
+.home-gallery {
+    column-count: 3;
+    width: min(48rem, calc(100vw - 2rem));
+}
+
+.gallery-page.container {
+    width: min(76rem, calc(100vw - 3rem));
+    max-width: 76rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.photo-gallery__item {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 0 0.75rem;
+    break-inside: avoid;
+    border-radius: 0.75rem;
+    background: rgba(127, 127, 127, 0.16);
+    box-shadow: 0 0.35rem 1rem rgba(0, 0, 0, 0.16);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.photo-gallery__item:hover,
+.photo-gallery__item:focus-visible {
+    transform: translateY(-0.2rem);
+    box-shadow: 0 0.6rem 1.4rem rgba(0, 0, 0, 0.24);
+}
+
+.photo-gallery__item:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 3px;
+}
+
+.photo-gallery__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: transform 240ms ease;
+}
+
+.photo-gallery__item:hover .photo-gallery__image,
+.photo-gallery__item:focus-visible .photo-gallery__image {
+    transform: scale(1.04);
+}
+
+.gallery-page__heading {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.gallery-page__heading .bold-title {
+    margin-bottom: 0;
+}
+
+.gallery-page__back {
+    display: inline-grid;
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(127, 127, 127, 0.28);
+    border-radius: 50%;
+    color: inherit;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.gallery-page__back:hover,
+.gallery-page__back:focus-visible {
+    color: inherit;
+    border-color: currentColor;
+    transform: translateX(-2px);
+}
+
+.gallery-page__description {
+    margin-top: 0.35rem;
+    color: inherit;
+    opacity: 0.68;
+}
+
+.gallery-page > .albums-nav {
+    margin-top: 0;
+}
+
+.back-to-top {
+    position: fixed;
+    right: max(1.25rem, env(safe-area-inset-right));
+    bottom: max(1.25rem, env(safe-area-inset-bottom));
+    z-index: 30;
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid rgba(127, 127, 127, 0.28);
+    border-radius: 50%;
+    color: inherit;
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.14);
+    font-size: 1.25rem;
+    line-height: 1;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.75rem);
+    backdrop-filter: blur(12px);
+    transition: opacity 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+    color: inherit;
+    border-color: currentColor;
+    transform: translateY(-2px);
+}
+
+@media (prefers-color-scheme: dark) {
+    .back-to-top {
+        background: rgba(24, 24, 24, 0.88);
+    }
+}
+
+/* The theme styles all images with a border, radius and shadow. PhotoSwipe
+   manages its own full-screen image layers, so reset those decorations. */
+.pswp .pswp__img {
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 768px) {
+    .photo-gallery,
+    .home-gallery {
+        column-count: 2;
+        margin-top: 1.5rem;
+    }
+
+    .home-gallery {
+        width: min(28rem, calc(100vw - 2rem));
+    }
+
+    .gallery-page.container {
+        width: calc(100vw - 2rem);
+    }
+
+    .albums-nav {
+        gap: 0.45rem;
+        margin-top: 1.25rem;
+    }
+
+    .albums-nav__link {
+        padding: 0.55rem 0.8rem;
+    }
+
+    .gallery-page__heading {
+        align-items: flex-start;
+    }
+
+    .gallery-page__back {
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-top: 0.25rem;
+    }
 }
